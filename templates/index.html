@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetal Ultrasound Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Fetal Ultrasound Classifier</h1>
+        <form action="/predict" method="post" enctype="multipart/form-data" class="upload-form">
+            <input type="file" name="image" accept="image/*" class="file-input">
+            <button type="submit" class="btn">Upload and Predict</button>
+        </form>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        {% if prediction %}
+            <div class="result">
+                <h2>Prediction: <span>{{ prediction }}</span></h2>
+                <h3>Confidence: <span>{{ confidence }}</span></h3>
+                <img src="{{ image_path }}" alt="Uploaded Image" class="uploaded-image">
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
